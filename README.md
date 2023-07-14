@@ -5,7 +5,7 @@
 
 # Certain things to consider while contributing:
 - Make sure all the variable and method names are as relevant as possible.
-- Always write a .txt file along while contributing any new algo and write a few comments there that might be relevant while either using or modifying the algo or if there is any special condition anywhere.
+- Always write a .txt file as well while contributing any new algo and write a few comments there that might be relevant while either using or modifying the algo or if there is any special condition anywhere.
 - Wherever sensible create structs and classes so that data structures could be resused also use C++ templates wherever possible, like in segtree, fenwick tree, etc.
 - Keep all the relevant algo and ds in one namespace in one cpp file, like common math realted stuff. (For ex: power, modInverse, nCr, etc. in math namespace).
 - Please refer already existing code in this repo to better understand what is preffered.
