@@ -1,12 +1,11 @@
+struct Node
+{
+    Node *link[26];
+    bool isEnd = false;
+    int cnt = 0;
+};
 struct Trie
 {
-    struct Node
-    {
-        Node *link[26];
-        bool isEnd = false;
-        int cnt = 0;
-    };
-
     Node *root;
     Trie()
     {

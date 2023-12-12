@@ -7,9 +7,9 @@ struct sparseTable
     void init(ll n, ll k)
     {
         MAXN = n;
-        k = K;
-        st.assign(MAXN, vector<ll>(K, 0));
-        log.assign(MAXN + 1);
+        K = k;
+        st.assign(MAXN, vector<ll>(K + 1, 0));
+        log.assign(MAXN + 1, 0);
         log[1] = 0;
         for (int i = 2; i <= MAXN; i++)
         {
@@ -20,11 +20,11 @@ struct sparseTable
     // F(a,b) = a+b or F(a,b) = max(a,b)
     void computeST(vector<ll> &arr)
     {
-        for (ll i = 0; i < n; i++)
+        for (ll i = 0; i < MAXN; i++)
             st[i][0] = F(arr[i]);
 
         for (ll j = 1; j <= K; j++)
-            for (ll i = 0; i + (1 << j) <= n; i++)
+            for (ll i = 0; i + (1 << j) <= MAXN; i++)
                 st[i][j] = F(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
     }
 
@@ -43,7 +43,7 @@ struct sparseTable
     }
 
     // O(1) for getting Max or Min
-    void getMax(ll L, ll R)
+    ll getMax(ll L, ll R)
     {
         int j = log[R - L + 1];
         return max(st[L][j], st[R - (1 << j) + 1][j]);

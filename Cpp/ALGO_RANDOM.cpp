@@ -1,0 +1,14 @@
+void getRandoms(ll L, ll R, ll count, vector<ll> &randoms)
+{
+    static random_device rd;
+    static mt19937 rng(rd());
+
+    // Define a uniform distribution for integers in the range [L, R]
+    uniform_int_distribution<ll> distribution(L, R);
+
+    // Generate and print random numbers from the specified range
+    for (int i = 0; i < count; ++i)
+    {
+        randoms.push_back(distribution(rng));
+    }
+}
