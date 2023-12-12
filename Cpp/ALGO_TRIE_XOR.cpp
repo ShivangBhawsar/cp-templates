@@ -1,6 +1,6 @@
 struct Node
 {
-    Node *link[26];
+    Node *link[2];
     bool isEnd = false;
     int cnt = 0;
 };
@@ -17,12 +17,12 @@ struct Trie
         Node *cur = root;
         for (auto x : word)
         {
-            if (cur->link[x - 'a'] == NULL)
+            if (cur->link[x - '0'] == NULL)
             {
                 Node *newNode = new Node();
-                cur->link[x - 'a'] = newNode;
+                cur->link[x - '0'] = newNode;
             }
-            cur = cur->link[x - 'a'];
+            cur = cur->link[x - '0'];
             cur->cnt++;
         }
         cur->isEnd = true;
@@ -40,11 +40,11 @@ struct Trie
         Node *pre = root;
         for (auto x : word)
         {
-            cur = cur->link[x - 'a'];
+            cur = cur->link[x - '0'];
             cur->cnt--;
             if (cur->cnt == 0)
             {
-                pre->link[x - 'a'] = NULL;
+                pre->link[x - '0'] = NULL;
                 break;
             }
             pre = cur;
@@ -56,12 +56,39 @@ struct Trie
         Node *cur = root;
         for (auto x : word)
         {
-            if (cur->link[x - 'a'] == NULL)
+            if (cur->link[x - '0'] == NULL)
             {
                 return false;
             }
-            cur = cur->link[x - 'a'];
+            cur = cur->link[x - '0'];
         }
         return cur->isEnd;
+    }
+
+    string find_min(string word)
+    {
+        string ans = "";
+        Node *cur = root;
+        for (auto x : word)
+        {
+            if (cur->link[x - '0'] == NULL)
+            {
+                ans.push_back('1');
+                if (x == '1')
+                {
+                    cur = cur->link[0];
+                }
+                else
+                {
+                    cur = cur->link[1];
+                }
+            }
+            else
+            {
+                ans.push_back('0');
+                cur = cur->link[x - '0'];
+            }
+        }
+        return ans;
     }
 };

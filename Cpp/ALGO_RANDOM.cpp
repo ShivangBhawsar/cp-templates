@@ -1,3 +1,4 @@
+// mt19937 rnd(chrono::steady_clock::now().time_since_epoch().count());
 void getRandoms(ll L, ll R, ll count, vector<ll> &randoms)
 {
     static random_device rd;
