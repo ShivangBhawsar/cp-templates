@@ -1,19 +1,19 @@
 struct segtree_lazy
 {
-    long long size;
-    long long NO_OPEERATION = 0;
-    long long NEUTRAL_ELEMENT = 0;
+    ll size;
+    ll NO_OPEERATION = 0;
+    ll NEUTRAL_ELEMENT = 0;
 
-    vector<long long> opr, values;
+    vector<ll> opr, values;
 
-    long long modify_op(ll a, ll b, ll len) // add to segment
+    ll modify_op(ll a, ll b, ll len) // add to segment
     {
         if (b == NO_OPEERATION)
             return a;
-        return a + b * len; // how will the values and opr change if you add b to the segment?
+        return a + b * len;
         // notice that modify_op is being used correctly on values and opr
     }
-    long long calc_op(ll a, ll b) // sum of segment
+    ll calc_op(ll a, ll b) // sum of segment
     {
         return a + b;
     }
@@ -67,7 +67,7 @@ struct segtree_lazy
         range_update(l, r, val, 0, 0, size);
     }
 
-    long long query(ll l, ll r, ll x, ll lx, ll rx)
+    ll query(ll l, ll r, ll x, ll lx, ll rx)
     {
         propogate(x, lx, rx);
         if (lx >= r || l >= rx)
@@ -79,7 +79,7 @@ struct segtree_lazy
         auto right = query(l, r, 2 * x + 2, mid, rx);
         return calc_op(left, right);
     }
-    long long query(ll l, ll r)
+    ll query(ll l, ll r)
     {
         return query(l, r, 0, 0, size);
     }
@@ -88,7 +88,7 @@ struct segtree_lazy
     // {
     //     cout << "segtree values: \n";
     //     ll cnt = 1, cur = 0;
-    //     for (int i = 0; i < 2 * size; i++)
+    //     for (int i = 0; i < 2 * size-1; i++)
     //     {
     //         cur++;
     //         cout << values[i] << " ";
@@ -102,4 +102,4 @@ struct segtree_lazy
     //     cout << "\n";
     // }
 };
-//https://cses.fi/problemset/task/2166/
+// https://cses.fi/problemset/task/2166/

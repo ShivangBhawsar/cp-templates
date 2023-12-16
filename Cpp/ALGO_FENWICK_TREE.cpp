@@ -2,29 +2,29 @@
 // To declare write FenwickTree f(arr) or FenwickTree f(size)
 struct FenwickTree
 {
-    vector<int> bit; // binary indexed tree
-    int n;
+    vector<ll> bit; // binary indexed tree
+    ll n;
 
-    FenwickTree(int n)
+    FenwickTree(ll n)
     {
         this->n = n;
         bit.assign(n, 0);
     }
 
-    int sum(int r)
+    ll sum(ll r)
     {
-        int ret = 0;
+        ll ret = 0;
         for (; r >= 0; r = (r & (r + 1)) - 1)
             ret += bit[r];
         return ret;
     }
 
-    int sum(int l, int r)
+    ll sum(ll l, ll r)
     {
         return sum(r) - sum(l - 1);
     }
 
-    void add(int idx, int delta)
+    void add(ll idx, ll delta)
     {
         for (; idx < n; idx = idx | (idx + 1))
             bit[idx] += delta;
