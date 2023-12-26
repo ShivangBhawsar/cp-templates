@@ -1,0 +1,29 @@
+{
+"": {
+  "prefix": "lisNlogn",
+  "body": [
+    "// dp[i] denotes the minimum Number from the array at the ith position (indexed from 0)  to make an increasing subsequence of length i+1",
+    "int getLIS(vector<ll> &arr)",
+    "{",
+    "    int n = arr.size();",
+    "    vector<int> dp;",
+    "    for (int i = 0; i < n; i++)",
+    "    {",
+    "        auto it = lower_bound(dp.begin(), dp.end(), arr[i]);",
+    "        if (it == dp.end())",
+    "        {",
+    "            dp.push_back(arr[i]);",
+    "        }",
+    "        else",
+    "        {",
+    "            *it = arr[i];",
+    "        }",
+    "    }",
+    "    cout << dp.size() << endl;",
+    "}",
+    "// lower bound gives answers for strictly increasing subsequence",
+    "// upper bound can give answer for increasing (non-decreasing) subsequence"
+  ],
+  "description": ""
+}
+}

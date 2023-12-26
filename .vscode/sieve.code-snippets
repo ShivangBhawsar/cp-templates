@@ -1,0 +1,22 @@
+{
+"": {
+  "prefix": "sieve",
+  "body": [
+    "void sieve(vector<bool> &prime)",
+    "{",
+    "    ll n = 1000000;",
+    "    prime[0] = false;",
+    "    prime[1] = false;",
+    "    for (ll p = 2; p * p <= n; p++)",
+    "    {",
+    "        if (prime[p] == true)",
+    "        {",
+    "            for (ll i = p * p; i <= n; i += p)",
+    "                prime[i] = false;",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "description": ""
+}
+}

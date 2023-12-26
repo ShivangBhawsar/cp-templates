@@ -1,0 +1,29 @@
+{
+"": {
+  "prefix": "bfs",
+  "body": [
+    "void bfs(ll node, vector<ll> adj[], vector<bool> &visit, vector<ll> &dis)",
+    "{",
+    "    queue<ll> q;",
+    "    visit[node] = true;",
+    "    dis[node] = 0;",
+    "    q.push(node);",
+    "    while (!q.empty())",
+    "    {",
+    "        ll s = q.front();",
+    "        q.pop();",
+    "        // process node s",
+    "        for (auto u : adj[s])",
+    "        {",
+    "            if (visit[u])",
+    "                continue;",
+    "            visit[u] = true;",
+    "            dis[u] = dis[s] + 1;",
+    "            q.push(u);",
+    "        }",
+    "    }",
+    "}"
+  ],
+  "description": ""
+}
+}

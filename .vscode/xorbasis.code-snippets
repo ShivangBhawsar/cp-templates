@@ -1,0 +1,40 @@
+{
+	"": {
+		"prefix": "xorbasis",
+		"body": [
+		  "ve<ll> basis(64, 0); //basis",
+		  "ll one = 1;",
+		  "void insertVector(ll mask)",
+		  "{",
+		  "    for (int i = 60; i >= 0; i--)",
+		  "    {",
+		  "        if ((mask & one << i) == 0)",
+		  "            continue; // continue if i != f(mask)",
+		  "",
+		  "        if (!basis[i])",
+		  "        { // If there is no basis vector with the i'th bit set, then insert this vector into the basis",
+		  "            basis[i] = mask;",
+		  "            return;",
+		  "        }",
+		  "        mask ^= basis[i]; // Otherwise subtract the basis vector from this vector",
+		  "    }",
+		  "}",
+		  "",
+		  "//MAX SUBSET XOR",
+		  "",
+		  "ll ans = 0;",
+		  "rev(i, 61, 0)",
+		  "{",
+		  "    if (!basis[i])",
+		  "        continue;",
+		  "",
+		  "    if (ans & one << i)",
+		  "        continue;",
+		  "",
+		  "    ans ^= basis[i];",
+		  "}",
+		  "cout<<ans<<\"\\n\";"
+		],
+		"description": ""
+	  }
+}
