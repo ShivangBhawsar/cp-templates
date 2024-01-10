@@ -96,7 +96,10 @@ int main()
         "/ALGO_HLD_ADD.cpp",
         "/ALGO_HLD_MAX.cpp",
         "/ALGO_MERGESORTTREE.cpp",
-        "/ALGO_INT_128.cpp"};
+        "/ALGO_INT_128.cpp",
+        "/ALGO_SCC.cpp",
+        "/ALGO_ROLLING_HASH_DOUBLE.cpp",
+        "/ALGO_ROLLING_HASH_SINGLE.cpp"};
 
     vector<string> output = {
         "bfs",
@@ -128,7 +131,10 @@ int main()
         "hldAdd",
         "hldMax",
         "mergesorttree",
-        "int128"};
+        "int128",
+        "scc",
+        "rollingHashDouble",
+        "rollingHashSingle"};
 
     int sz = input.size();
     for (int i = 0; i < sz; i++)

@@ -1,0 +1,7 @@
+GET https://codeforces.com/api/contest.standings?contestId=903&asManager=false&showUnofficial=true&handles=segment_tea
+
+###
+GET https://codeforces.com/api/user.info?handles=DmitriyH;Fefer_Ivan
+
+###
+GET https://codeforces.com/api/user.status?handle=segment_tea&from=1&count=100

@@ -1,132 +1,147 @@
-#pragma GCC optimize("Ofast,unroll-loops")
-#pragma GCC target("avx2")
-// g++ "-Wl,--stack,1078749825" q1.cpp -o ab
+/*
+
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠦⡀⠀⡠⢒⠁⠀⠀⢀⡔⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠢⡀⣀⠤⠒⠉⠉
+⠀⠀⠀⠀⠀⠀⠀⠀⠁⢁⠀⠀⠀⢀⡼⠋⠠⠀⠀⠀⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢰⣯⢀⡆⡠⠋⠀⡠⠂⠰⠋⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠣⡀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣼⢧⣼⠎⠀⡠⠊⠀⢀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⣀
+⠀⠀⠀⠀⠀⠀⠀⢰⢃⡴⢁⡔⠊⠀⠀⢠⠞⠀⠀⢸⠀⠀⠀⠀⠀⠀⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿
+⠀⠀⠀⠀⠀⠀⢀⣿⠎⢀⡎⠀⠀⠀⠀⠃⠀⠀⠀⢿⠀⠀⠀⠀⠀⠀⣾⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹
+⠀⠀⠀⠀⠀⠀⣸⠃⢠⠎⠀⠀⠀⠀⠀⠀⠀⠀⢠⢿⡀⠀⠀⠀⠀⠀⡇⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈
+⠀⠀⠀⠀⠀⢀⠏⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⣤⠏⠘⡇⠀⠀⠀⠀⢸⠁⠀⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡜⢀⠏⠀⠀⠀⠀⠀⠀⠀⠀⣰⠯⢄⣀⡇⠀⠀⠀⠀⢸⠀⠱⡀⠹⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸
+⠀⠀⠀⠀⡜⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀⣰⠏⠀⠀⠈⡇⢸⠀⠀⠀⢸⠀⠀⠀⠀⠘⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⡜⢀⡼⠁⠀⠀⠀⠀⠀⠀⠀⢰⣏⣠⣀⡀⠀⢸⢾⢧⠀⠀⢸⠀⠀⠀⠀⠠⠜⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⡄⢸⡇⠀⠀⠀⠀⠀⢠⣿⠛⠛⣿⣿⣷⣜⣿⠸⡄⠀⢸⠀⠀⠀⠀⠀⢀⡀⠹⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡼⢠⣾⠃⡄⠀⠀⠀⢰⣿⡇⢸⣷⡿⠻⣿⣿⡟⠀⢻⡄⢸⠀⠀⠀⠀⠔⣡⣴⣶⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡇⢸⡟⠀⡇⠀⠀⠀⢸⣿⠣⠸⡝⠧⡤⣿⡏⠀⠀⠀⢳⡘⡄⠀⠀⠀⢾⡛⣿⣿⣿⣿⣿⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠁⣾⠃⠀⢳⠀⠀⠀⢸⣿⠀⠀⠉⠒⠒⠋⠀⠀⠀⠀⠀⠙⣇⠀⠀⠀⠘⣿⣯⡀⣸⣿⡇⢈⣷⣄⣠⠀⠀⠀⠀⠀⡀⠀⠀⠀
+⠀⠀⠀⠀⠀⠉⠀⢰⠸⡄⠀⠀⡞⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠭⠭⠭⠞⠀⠚⢠⣿⣿⣆⠀⠀⠀⢀⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢇⢷⡀⢰⠇⢸⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠁⢿⢿⡄⠀⠀⢸⡇⠈⡆⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠘⣇⣾⠀⢸⡇⠳⣄⠀⠀⠀⠀⢲⠤⠤⠤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⠁⠀⣸⣿⣷⠀⠀⡼⡇⢠⠃⠀
+⠀⠀⠀⠀⠀⢀⣀⣀⣀⢀⣹⣿⡄⢸⡇⠀⠀⠙⢦⣀⠀⠈⠳⠤⠀⠤⠟⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⠇⠀⣰⣟⣿⣿⣇⠀⡇⣿⡼⠀⠀
+⠀⠀⢀⠶⡋⠉⠁⠀⠈⠉⠀⠈⠛⢾⣇⠀⢠⡴⠋⠈⢷⣄⡀⠀⠀⠀⠀⣀⣀⠤⠤⣴⣞⢻⣿⣿⡏⠀⣼⣋⣉⣹⣿⣿⣼⠀⣿⠃⠀⠀
+⠀⢀⠃⣸⠁⠀⣼⠀⠀⣸⠁⠀⡄⠀⠹⠛⢻⡄⠀⠀⠈⠙⢮⡑⠊⣉⡽⠋⠀⠀⠀⠼⠉⢿⣿⣿⣀⣼⣿⣿⣿⣿⣿⣿⠋⠀⠁⠀⠀⠀
+⠀⠘⢰⠇⠀⢰⡇⠀⢠⡏⠀⢰⠀⠀⡆⢀⡞⠇⠀⠀⠀⠀⠀⢹⠞⠁⠀⠀⠀⠀⠀⡐⣇⠀⠀⢸⠋⠉⠉⠛⠿⣿⣿⣿⡀⠀⠀⠀⠀⠀
+⠀⠀⠻⠤⠤⡟⠀⣠⠞⠀⢀⠎⠀⠸⢹⡿⠁⠁⠀⠀⠀⠀⣠⣼⣤⡀⠀⢀⠎⠁⠀⠀⢹⡀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠑⠚⣳⠤⠔⠛⠒⠢⠤⡞⠁⠀⠀⠀⠀⡀⡞⠁⠀⠀⢹⡄⢸⠀⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢇⠀⠀⠀⠀⠀
+⢀⠀⠀⣀⣀⣀⣀⣇⣀⠀⢀⣀⡀⢀⠁⠀⠀⠀⠀⠉⠀⠹⡄⠀⢀⡼⠁⠀⠀⠀⠀⠀⠀⠙⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣈⠶⠤⠀⠀⠀⠀⠀⠀⠀
+*/
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
-typedef long double ld;
-// #include <ext/pb_ds/assoc_container.hpp>
-// using namespace __gnu_pbds;
-// typedef tree <ll,null_type,less <ll>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
-#define FAST ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-#define all(x) x.begin(), x.end()
-#define mxe(v) *max_element(v.begin(), v.end())
-#define mne(v) *min_element(v.begin(), v.end())
-#define tup(i, x) get<i>(x)
-#define rem 1000000007
-#define PI 3.141592653589793238462643383279502
-bool isvalid(const string &s, const vector<string> &arr, ll n)
+typedef long long ll;
+
+const ll INF = 1e9;
+
+vector<vector<pair<ll, ll>>> graph;
+vector<ll> score;
+vector<ll> dp;
+
+struct DSU
 {
-    vector<ll> fre(26);
-    bool flag = false;
-    for (auto x : s)
+    vector<ll> parent;
+
+    DSU(ll n)
     {
-        fre[x - 'a']++;
-        if (fre[x - 'a'] >= 2)
-        {
-            flag = true;
-        }
+        parent = vector<ll>(n, -1);
     }
-    for (auto &x : arr)
+
+    // find the leader
+    ll find(ll x)
     {
-        vector<ll> idx;
-        for (int i = 0; i < n; i++)
-        {
-            if (x[i] != s[i])
-            {
-                idx.push_back(i);
-            }
-        }
-        if (idx.size() != 0 && idx.size() != 2)
-        {
-            return false;
-        }
-        if (idx.size() == 2)
-        {
-            if (s[idx[0]] != x[idx[1]] || s[idx[1]] != x[idx[0]])
-            {
-                return false;
-            }
-        }
-        if (idx.size() == 0 && !flag)
-        {
-            return false;
-        }
+        return parent[x] < 0 ? x : parent[x] = find(parent[x]);
     }
-    return true;
-}
-int main()
+
+    // check if same componenet
+    bool same(ll a, ll b)
+    {
+        return find(a) == find(b);
+    }
+
+    ll size(ll x)
+    {
+        return -parent[find(x)];
+    }
+
+    bool unite(ll a, ll b)
+    {
+        a = find(a);
+        b = find(b);
+
+        if (a == b)
+            return false;
+
+        if (parent[a] > parent[b])
+            swap(a, b);
+
+        parent[a] += parent[b];
+        parent[b] = a;
+        return true;
+    }
+};
+
+signed main()
 {
-    FAST;
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
-    /*ll tests;
-    cin>>tests;
-    for (int gg=0;gg<tests;gg++)
-    {}*/
-    ll k, n;
-    cin >> k >> n;
-    vector<string> arr(k);
-    for (int i = 0; i < k; i++)
+    // freopen("in.txt", "r", stdin);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n, m;
+    cin >> n >> m;
+
+    DSU dsu = DSU(n);
+
+    graph.resize(n);
+    score.resize(n);
+    dp.resize(n, 0);
+
+    for (ll i = 0; i < n; i++)
     {
-        cin >> arr[i];
+        cin >> score[i];
     }
-    sort(all(arr));
-    arr.resize(distance(arr.begin(), unique(all(arr))));
-    if (arr.size() == 1)
+
+    vector<vector<pair<ll, ll>>> edges(2e5 + 1);
+
+    while (m--)
     {
-        swap(arr[0][0], arr[0][1]);
-        cout << arr[0] << "\n";
-        return 0;
-    }
-    string s1 = arr[0], s2 = arr[1];
-    vector<ll> idx;
-    for (int z = 0; z < n; z++)
-    {
-        if (s1[z] != s2[z])
+        ll x, y;
+        cin >> x >> y;
+        x--, y--;
+
+        if (score[x] == score[y])
         {
-            idx.push_back(z);
+            dsu.unite(x, y);
+        }
+
+        // can go to x to y
+        if (score[x] < score[y])
+        {
+            edges[score[x]].push_back({x, y});
+        }
+        else if (score[x] > score[y])
+        {
+            edges[score[y]].push_back({y, x});
         }
     }
 
-    if (idx.size() > 4)
+    dp[dsu.find(0)] = 1;
+
+    for (auto x : edges)
     {
-        cout << "-1\n";
-        return 0;
-    }
-    if (isvalid(s1, arr, n)) // O(n*k)
-    {
-        cout << s1 << "\n";
-        return 0;
-    }
-    if (isvalid(s2, arr, n))
-    {
-        cout << s2 << "\n";
-        return 0;
-    }
-    for (int x = 0; x < n; x++)
-    {
-        for (auto y : idx)
+        for (auto y : x)
         {
-            if (x == y)
+            ll leader1 = dsu.find(y.first);
+            ll leader2 = dsu.find(y.second);
+
+            if (dp[leader1] == 0)
             {
                 continue;
             }
-            swap(s1[x], s1[y]);
-            if (isvalid(s1, arr, n)) // O(n*k)
-            {
-                cout << s1 << "\n";
-                return 0;
-            }
-            swap(s1[x], s1[y]);
-            swap(s2[x], s2[y]);
-            if (isvalid(s2, arr, n))
-            {
-                cout << s2 << "\n";
-                return 0;
-            }
-            swap(s2[x], s2[y]);
+
+            dp[leader2] = max(dp[leader2], dp[leader1] + 1);
         }
     }
-    cout << "-1\n";
+
+    cout << dp[dsu.find(n - 1)];
+
+    return 0;
 }

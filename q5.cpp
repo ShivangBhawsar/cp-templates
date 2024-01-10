@@ -1,5 +1,5 @@
-#pragma GCC optimize("Ofast,unroll-loops")
-#pragma GCC target("avx2")
+// #pragma GCC optimize("Ofast,unroll-loops")
+// #pragma GCC target("avx2")
 // g++ "-Wl,--stack,1078749825" q1.cpp -o ab
 #include <bits/stdc++.h>
 using namespace std;

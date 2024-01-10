@@ -2,7 +2,7 @@
 "": {
   "prefix": "int128",
   "body": [
-    "typedef __int128 ll128;",
+    "typedef __int128 i128;",
     "__int128 read()",
     "{",
     "    __int128 x = 0, f = 1;",
@@ -34,7 +34,7 @@
     "",
     "bool cmp(__int128 x, __int128 y) { return x > y; }",
     "",
-    "// ll128 n = read();",
+    "// i128 n = read();",
     "// print(n)"
   ],
   "description": ""

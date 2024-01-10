@@ -46,7 +46,23 @@ struct mergesorttree
         presum.assign(2 * size, {});
     }
 
-    // we are going from lx included to rx not included
+    // always build
+    void build(ll x, ll lx, ll rx, vector <ll> &arr)
+    {
+        if (rx - lx == 1)
+        {
+            if (lx < arr.size())
+                tree[x] = {arr[lx]};
+            return;
+        }
+        ll mid = (lx + rx) / 2;
+        build(2 * x + 1, lx, mid, arr);
+        build(2 * x + 2, mid, rx, arr);
+ 
+        tree[x] = merge(tree[2 * x + 1], tree[2 * x + 2]);
+    }
+
+    // we are going from lx included to rx not included, useless update for mst as it will be O(n)
     void point_update(ll i, ll val, ll x, ll lx, ll rx)
     {
         if (rx - lx == 1)
