@@ -1,147 +1,116 @@
-/*
-
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠦⡀⠀⡠⢒⠁⠀⠀⢀⡔⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠢⡀⣀⠤⠒⠉⠉
-⠀⠀⠀⠀⠀⠀⠀⠀⠁⢁⠀⠀⠀⢀⡼⠋⠠⠀⠀⠀⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢰⣯⢀⡆⡠⠋⠀⡠⠂⠰⠋⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠣⡀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⣼⢧⣼⠎⠀⡠⠊⠀⢀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⣀
-⠀⠀⠀⠀⠀⠀⠀⢰⢃⡴⢁⡔⠊⠀⠀⢠⠞⠀⠀⢸⠀⠀⠀⠀⠀⠀⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿
-⠀⠀⠀⠀⠀⠀⢀⣿⠎⢀⡎⠀⠀⠀⠀⠃⠀⠀⠀⢿⠀⠀⠀⠀⠀⠀⣾⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹
-⠀⠀⠀⠀⠀⠀⣸⠃⢠⠎⠀⠀⠀⠀⠀⠀⠀⠀⢠⢿⡀⠀⠀⠀⠀⠀⡇⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈
-⠀⠀⠀⠀⠀⢀⠏⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⣤⠏⠘⡇⠀⠀⠀⠀⢸⠁⠀⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⡜⢀⠏⠀⠀⠀⠀⠀⠀⠀⠀⣰⠯⢄⣀⡇⠀⠀⠀⠀⢸⠀⠱⡀⠹⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸
-⠀⠀⠀⠀⡜⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀⣰⠏⠀⠀⠈⡇⢸⠀⠀⠀⢸⠀⠀⠀⠀⠘⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⡜⢀⡼⠁⠀⠀⠀⠀⠀⠀⠀⢰⣏⣠⣀⡀⠀⢸⢾⢧⠀⠀⢸⠀⠀⠀⠀⠠⠜⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢀⡄⢸⡇⠀⠀⠀⠀⠀⢠⣿⠛⠛⣿⣿⣷⣜⣿⠸⡄⠀⢸⠀⠀⠀⠀⠀⢀⡀⠹⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⡼⢠⣾⠃⡄⠀⠀⠀⢰⣿⡇⢸⣷⡿⠻⣿⣿⡟⠀⢻⡄⢸⠀⠀⠀⠀⠔⣡⣴⣶⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⡇⢸⡟⠀⡇⠀⠀⠀⢸⣿⠣⠸⡝⠧⡤⣿⡏⠀⠀⠀⢳⡘⡄⠀⠀⠀⢾⡛⣿⣿⣿⣿⣿⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠁⣾⠃⠀⢳⠀⠀⠀⢸⣿⠀⠀⠉⠒⠒⠋⠀⠀⠀⠀⠀⠙⣇⠀⠀⠀⠘⣿⣯⡀⣸⣿⡇⢈⣷⣄⣠⠀⠀⠀⠀⠀⡀⠀⠀⠀
-⠀⠀⠀⠀⠀⠉⠀⢰⠸⡄⠀⠀⡞⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠭⠭⠭⠞⠀⠚⢠⣿⣿⣆⠀⠀⠀⢀⡇⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢇⢷⡀⢰⠇⢸⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠁⢿⢿⡄⠀⠀⢸⡇⠈⡆⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠈⠘⣇⣾⠀⢸⡇⠳⣄⠀⠀⠀⠀⢲⠤⠤⠤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⠁⠀⣸⣿⣷⠀⠀⡼⡇⢠⠃⠀
-⠀⠀⠀⠀⠀⢀⣀⣀⣀⢀⣹⣿⡄⢸⡇⠀⠀⠙⢦⣀⠀⠈⠳⠤⠀⠤⠟⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⠇⠀⣰⣟⣿⣿⣇⠀⡇⣿⡼⠀⠀
-⠀⠀⢀⠶⡋⠉⠁⠀⠈⠉⠀⠈⠛⢾⣇⠀⢠⡴⠋⠈⢷⣄⡀⠀⠀⠀⠀⣀⣀⠤⠤⣴⣞⢻⣿⣿⡏⠀⣼⣋⣉⣹⣿⣿⣼⠀⣿⠃⠀⠀
-⠀⢀⠃⣸⠁⠀⣼⠀⠀⣸⠁⠀⡄⠀⠹⠛⢻⡄⠀⠀⠈⠙⢮⡑⠊⣉⡽⠋⠀⠀⠀⠼⠉⢿⣿⣿⣀⣼⣿⣿⣿⣿⣿⣿⠋⠀⠁⠀⠀⠀
-⠀⠘⢰⠇⠀⢰⡇⠀⢠⡏⠀⢰⠀⠀⡆⢀⡞⠇⠀⠀⠀⠀⠀⢹⠞⠁⠀⠀⠀⠀⠀⡐⣇⠀⠀⢸⠋⠉⠉⠛⠿⣿⣿⣿⡀⠀⠀⠀⠀⠀
-⠀⠀⠻⠤⠤⡟⠀⣠⠞⠀⢀⠎⠀⠸⢹⡿⠁⠁⠀⠀⠀⠀⣠⣼⣤⡀⠀⢀⠎⠁⠀⠀⢹⡀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⡇⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠑⠚⣳⠤⠔⠛⠒⠢⠤⡞⠁⠀⠀⠀⠀⡀⡞⠁⠀⠀⢹⡄⢸⠀⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢇⠀⠀⠀⠀⠀
-⢀⠀⠀⣀⣀⣀⣀⣇⣀⠀⢀⣀⡀⢀⠁⠀⠀⠀⠀⠉⠀⠹⡄⠀⢀⡼⠁⠀⠀⠀⠀⠀⠀⠙⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣈⠶⠤⠀⠀⠀⠀⠀⠀⠀
-*/
+// #pragma GCC optimize("Ofast,unroll-loops")
+// #pragma GCC target("avx2")
+// g++ "-Wl,--stack,1078749825" q1.cpp -o ab
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-
-const ll INF = 1e9;
-
-vector<vector<pair<ll, ll>>> graph;
-vector<ll> score;
-vector<ll> dp;
-
-struct DSU
+typedef long long int ll;
+typedef long double ld;
+#define FAST ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+#define all(x) x.begin(), x.end()
+#define mxe(v) *max_element(v.begin(), v.end())
+#define mne(v) *min_element(v.begin(), v.end())
+#define tup(i, x) get<i>(x)
+#define rem 1000000007
+#define PI 3.141592653589793238462643383279502
+int main()
 {
-    vector<ll> parent;
-
-    DSU(ll n)
+    FAST;
+    // freopen("input.txt", "r", stdin);
+    // freopen("output.txt", "w", stdout);
+    ll tests;
+    cin >> tests;
+    for (int gg = 0; gg < tests; gg++)
     {
-        parent = vector<ll>(n, -1);
-    }
-
-    // find the leader
-    ll find(ll x)
-    {
-        return parent[x] < 0 ? x : parent[x] = find(parent[x]);
-    }
-
-    // check if same componenet
-    bool same(ll a, ll b)
-    {
-        return find(a) == find(b);
-    }
-
-    ll size(ll x)
-    {
-        return -parent[find(x)];
-    }
-
-    bool unite(ll a, ll b)
-    {
-        a = find(a);
-        b = find(b);
-
-        if (a == b)
-            return false;
-
-        if (parent[a] > parent[b])
-            swap(a, b);
-
-        parent[a] += parent[b];
-        parent[b] = a;
-        return true;
-    }
-};
-
-signed main()
-{
-    // freopen("in.txt", "r", stdin);
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    ll n, m;
-    cin >> n >> m;
-
-    DSU dsu = DSU(n);
-
-    graph.resize(n);
-    score.resize(n);
-    dp.resize(n, 0);
-
-    for (ll i = 0; i < n; i++)
-    {
-        cin >> score[i];
-    }
-
-    vector<vector<pair<ll, ll>>> edges(2e5 + 1);
-
-    while (m--)
-    {
-        ll x, y;
-        cin >> x >> y;
-        x--, y--;
-
-        if (score[x] == score[y])
+        ll n, q;
+        cin >> n >> q;
+        vector<vector<ll>> arropr;
+        vector<pair<ll, ll>> range;
+        vector<ll> curopr;
+        ll right = -1, infi = 1e18;
+        ld rightd = -1;
+        infi++;
+        for (int i = 0; i < n; i++)
         {
-            dsu.unite(x, y);
-        }
-
-        // can go to x to y
-        if (score[x] < score[y])
-        {
-            edges[score[x]].push_back({x, y});
-        }
-        else if (score[x] > score[y])
-        {
-            edges[score[y]].push_back({y, x});
-        }
-    }
-
-    dp[dsu.find(0)] = 1;
-
-    for (auto x : edges)
-    {
-        for (auto y : x)
-        {
-            ll leader1 = dsu.find(y.first);
-            ll leader2 = dsu.find(y.second);
-
-            if (dp[leader1] == 0)
+            ll b, x;
+            cin >> b >> x;
+            // cout << "RIGHT: " << right << "\n";
+            if (rightd > 1e18)
             {
+                // arropr.pop_back();
+                // range.pop_back();
                 continue;
             }
+            if (b == 1)
+            {
+                curopr.push_back(x);
+                right++;
+                rightd += 1;
+            }
+            else
+            {
+                arropr.push_back(curopr);
+                range.push_back({right - (ll)curopr.size() + 1, right});
+                curopr.clear();
+                arropr.push_back({-1, x});
 
-            dp[leader2] = max(dp[leader2], dp[leader1] + 1);
+                rightd = (rightd + 1) * ((ld)x + 1) - 1;
+                if (rightd <= 2e18)
+                {
+                    range.push_back({right + 1, (right + 1) * (x + 1) - 1});
+                    right = (right + 1) * (x + 1) - 1;
+                }
+                else
+                {
+                    range.push_back({right + 1, 1e18});
+                    right = 1e18;
+                }
+            }
         }
+        if (!curopr.empty())
+        {
+            arropr.push_back(curopr);
+            range.push_back({right - (ll)curopr.size() + 1, right});
+        }
+
+        while (arropr.size() > 130)
+        {
+            arropr.pop_back();
+            range.pop_back();
+        }
+
+        ll sz = range.size();
+        // for (int i = 0; i < sz; i++)
+        // {
+        //     cout << "arropr: ";
+        //     for (auto x : arropr[i])
+        //     {
+        //         cout << x << " ";
+        //     }
+        //     cout << "\n";
+        //     cout << "range: " << range[i].first << " " << range[i].second << "\n";
+        // }
+        while (q--)
+        {
+            ll k;
+            cin >> k;
+            k--;
+            ll ans = 0;
+            for (int i = sz - 1; i >= 0; i--)
+            {
+                if (k >= range[i].first && k <= range[i].second)
+                {
+                    if (arropr[i][0] == -1)
+                    {
+                        k %= range[i].first;
+                    }
+                    else
+                    {
+                        ans = arropr[i][k - range[i].first];
+                    }
+                }
+            }
+            cout << ans << " ";
+        }
+        cout << "\n";
     }
-
-    cout << dp[dsu.find(n - 1)];
-
-    return 0;
 }

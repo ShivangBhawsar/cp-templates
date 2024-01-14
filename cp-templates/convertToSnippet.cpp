@@ -99,7 +99,12 @@ int main()
         "/ALGO_INT_128.cpp",
         "/ALGO_SCC.cpp",
         "/ALGO_ROLLING_HASH_DOUBLE.cpp",
-        "/ALGO_ROLLING_HASH_SINGLE.cpp"};
+        "/ALGO_ROLLING_HASH_SINGLE.cpp",
+        "/ALGO_PBDS.cpp",
+        "/ALGO_BITSET.cpp",
+        "/ALGO_MODINT.cpp",
+        "/ALGO_PRIME_FACTORS.cpp",
+        "/ALGO_XOR_BASIS.cpp"};
 
     vector<string> output = {
         "bfs",
@@ -134,7 +139,12 @@ int main()
         "int128",
         "scc",
         "rollingHashDouble",
-        "rollingHashSingle"};
+        "rollingHashSingle",
+        "pbds",
+        "bitsetUses",
+        "modInt",
+        "primeFactors",
+        "xorBasis"};
 
     int sz = input.size();
     for (int i = 0; i < sz; i++)

@@ -1,6 +1,6 @@
 void sieve(vector<bool> &prime)
 {
-    ll n = 1000000;
+    ll n = prime.size() - 1;
     prime[0] = false;
     prime[1] = false;
     for (ll p = 2; p * p <= n; p++)

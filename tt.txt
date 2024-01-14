@@ -2,7 +2,7 @@ wake up- 8:00
 take bus to gym- 8:30
 take return bus from gym- 10:45
 get done with brush+shower- 11:45
-get done with breakfast- 12:30 [options- pasta/ noodles/ dhokla/ egg sandwich etc.]
+get done with breakfast- 12:30 [options- pasta/ noodles/ dhokla/ mushroom/ egg sandwich etc.]
 start div1/ ARC virtual- 12:45
 do FSO/ Project Euler/ Leetcode DP/ OTW/ CSES after contest untill- 19:00 (do only one thing don't switch + eat something in between boiled egg/ milk/ banana) 
 start dinner prep- 19:30

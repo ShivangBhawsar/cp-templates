@@ -5,9 +5,6 @@
 using namespace std;
 typedef long long int ll;
 typedef long double ld;
-// #include <ext/pb_ds/assoc_container.hpp>
-// using namespace __gnu_pbds;
-// typedef tree <ll,null_type,less <ll>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
 #define FAST ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 #define all(x) x.begin(), x.end()
 #define mxe(v) *max_element(v.begin(), v.end())
@@ -24,27 +21,56 @@ int main()
     cin >> tests;
     for (int gg = 0; gg < tests; gg++)
     {
-        ll n;
-        cin >> n;
-        vector<ll> arr(n);
+        ll n, q;
+        cin >> n >> q;
+        vector<pair<ll, ll>> arropr(n);
         for (int i = 0; i < n; i++)
         {
-            cin >> arr[i];
-            if (arr[i] == 1)
-            {
-                arr[i]++;
-            }
+            cin >> arropr[i].first >> arropr[i].second;
         }
-        for (int i = 0; i < n - 1; i++)
+        vector<pair<ll, ll>> query(q);
+        for (int i = 0; i < q; i++)
         {
-            if (arr[i + 1] % arr[i] == 0)
-            {
-                arr[i + 1]++;
-            }
+            cin >> query[i].first;
+            query[i].first--;
+            query[i].second = i;
         }
-        for (auto x : arr)
+        sort(all(query));
+        ll pos = 0;
+        vector<ll> ans(q, 0);
+        vector<ll> arr;
+        ll left = 0, right = -1;
+        for (int i = 0; i < n; i++)
         {
-            cout << x << " ";
+            bool flag = false;
+            if (arropr[i].first == 1)
+            {
+                arr.push_back(arropr[i].second);
+                right++;
+            }
+            else
+            {
+                right = (right + 1) * (arropr[i].second + 1) - 1;
+                left = right - arr.size() + 1;
+                // after the query set left=right-arr.size();
+            }
+            while (pos < q && query[pos].first <= right)
+            {
+                ans[query[pos].second] = arr[(query[pos].first - left) % arr.size()];
+                
+                pos++;
+            }
+            cout << "arr: ";
+            for (auto x : arr)
+            {
+                cout << x << " ";
+            }
+            cout << "\n";
+            cout << "left: " << left << " right: " << right << "\n\n";
+        }
+        for (int i = 0; i < q; i++)
+        {
+            cout << ans[i] << " ";
         }
         cout << "\n";
     }
