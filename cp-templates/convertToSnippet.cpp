@@ -104,7 +104,10 @@ int main()
         "/ALGO_BITSET.cpp",
         "/ALGO_MODINT.cpp",
         "/ALGO_PRIME_FACTORS.cpp",
-        "/ALGO_XOR_BASIS.cpp"};
+        "/ALGO_XOR_BASIS.cpp",
+        "/ALGO_EXECUTION_TIME.cpp",
+        "/ALGO_SMALL_TO_LARGE.cpp",
+        "/ALGO_FFT.cpp"};
 
     vector<string> output = {
         "bfs",
@@ -144,7 +147,10 @@ int main()
         "bitsetUses",
         "modInt",
         "primeFactors",
-        "xorBasis"};
+        "xorBasis",
+        "measureTime",
+        "smallToLarge",
+        "fft"};
 
     int sz = input.size();
     for (int i = 0; i < sz; i++)

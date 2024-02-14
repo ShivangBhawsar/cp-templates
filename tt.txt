@@ -1,9 +1,11 @@
 wake up- 8:00
-take bus to gym- 8:30
-take return bus from gym- 10:45
-get done with brush+shower- 11:45
-get done with breakfast- 12:30 [options- pasta/ noodles/ dhokla/ mushroom/ egg sandwich etc.]
-start div1/ ARC virtual- 12:45
+Meditate- 8:25
+Eat eggs and milk: 8:30
+take bus to gym- 9:10
+take return bus from gym- 11:45
+get done with brush+shower- 12:45
+get done with lunch- 13:30 [options- pasta/ noodles/ dhokla/ mushroom/ sandwich etc.]
+start div1/ ARC virtual- 14:30
 do FSO/ Project Euler/ Leetcode DP/ OTW/ CSES after contest untill- 19:00 (do only one thing don't switch + eat something in between boiled egg/ milk/ banana) 
 start dinner prep- 19:30
 do GRE/ Kindle/ Netflix/ Chess after dinner from- 21:30
